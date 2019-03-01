@@ -67,7 +67,8 @@ public class Part3 {
         //expected output: 1
     }
     public void findTest() {
-        System.out.println(findGene("ATGTAAGATGCCCTAGT", 0) + "ATGTAA");
-        System.out.println(findGene("ATGTAAGATGCCCTAGT", 6) + "ATGCCCTAG");
+        System.out.println(findGene("AATGCTAACTAGCTGACTAAT", 0) + "quiz 1");
+        //System.out.println(findGene("ATGTAAGATGCCCTAGT", 0) + "ATGTAA");
+        //System.out.println(findGene("ATGTAAGATGCCCTAGT", 6) + "ATGCCCTAG");
     }
 }
