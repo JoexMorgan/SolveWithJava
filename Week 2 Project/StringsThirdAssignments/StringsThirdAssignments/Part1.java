@@ -60,11 +60,9 @@ public class Part1 {
             if (currGene.isEmpty()) {
                 break;
             }
-            //System.out.println(currGene);
             resource.add(currGene);
             currIndex = dna.indexOf(currGene, currIndex) + currGene.length();
         }
-        //System.out.println(printAllGenes("ATGTAATTTATGTGAAAAATGTAG"));
         return resource;
     }
     public void getTest() {

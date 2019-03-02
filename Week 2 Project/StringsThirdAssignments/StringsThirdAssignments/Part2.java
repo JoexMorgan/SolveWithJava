@@ -18,7 +18,8 @@ public class Part2 {
         return (float)cgCount / dna.length();
     }
     public void cgTest() {
-        System.out.println(cgRatio("ATGCGCTAA"));
+        //System.out.println(cgRatio("ATGCGCTAA"));
+        System.out.println(cgRatio("ATGTACTAA"));
     }
     public int countCTG(String dna) {
         int count = 0;
