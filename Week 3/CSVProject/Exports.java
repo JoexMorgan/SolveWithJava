@@ -12,8 +12,10 @@ public class Exports {
     public void tester() {
         FileResource fr = new FileResource("exports_small.csv");
         CSVParser parser = fr.getCSVParser();
+        //v5.0
+        //System.out.println(bigExporters(parser, "$999,999,999"));
         //v4.0
-        System.out.println(numberOfExporters(parser, "coffee"));
+        //System.out.println(numberOfExporters(parser, "coffee"));
         //v3.0
         //System.out.println(listExportersTwoProducts(parser, "gold", "diamonds"));
         //v2.0
@@ -55,5 +57,15 @@ public class Exports {
            }
      }
      return count;
-    }   
+    }
+    public void bigExporters(CSVParser parser, String amount) {
+      String info = "";
+      for (CSVRecord r : parser) {
+         if (r.get("Value (dollars)").length() > amount.length()) {
+             info += r.get("Country") + " " + r.get("Value (dollars)") + "\n";
+             System.out.println(r.get("Country") + " " + r.get("Values (dollars)"));
+         }
+      }
+      //return info;
+    }
 }
