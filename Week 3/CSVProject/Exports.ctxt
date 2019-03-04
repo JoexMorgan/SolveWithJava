@@ -4,4 +4,6 @@ comment1.params=
 comment1.target=void\ tester()
 comment2.params=parser\ country
 comment2.target=java.lang.String\ countryInfo(org.apache.commons.csv.CSVParser,\ java.lang.String)
-numComments=3
+comment3.params=exportItem1\ exportItem2
+comment3.target=void\ listExportersTwoProducts(java.lang.String,\ java.lang.String)
+numComments=4

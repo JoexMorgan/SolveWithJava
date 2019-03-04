@@ -12,7 +12,11 @@ public class Exports {
     public void tester() {
         FileResource fr = new FileResource("exports_small.csv");
         CSVParser parser = fr.getCSVParser();
-        System.out.println(countryInfo(parser, "United States"));
+        //v3.0
+        //System.out.println(listExportersTwoProducts(parser, "gold", "diamonds"));
+        //v2.0
+        //System.out.println(countryInfo(parser, "United States"));
+        //v1.0
         //for (CSVRecord r : parser) {
          //String s = r.get("Country");
          //System.out.println(s);
@@ -21,7 +25,6 @@ public class Exports {
         //System.out.println(parser.get(0));   
     }
     public String countryInfo(CSVParser parser, String country) {
-        String info = "";
         for (CSVRecord r : parser) {
            if (r.get("Country").equals(country)) {
               String name = r.get("Country");
@@ -31,5 +34,15 @@ public class Exports {
            }
         }
         return "NOT FOUND";
+    }
+    public void listExportersTwoProducts(String exportItem1, String exportItem2){
+     FileResource fr = new FileResource("exports_small.csv");
+     CSVParser parser = fr.getCSVParser();
+     for (CSVRecord r : parser) {
+         String exports = r.get("Exports");
+         if (exports.contains(exportItem1) && exports.contains(exportItem2)) {
+             System.out.println(r.get("Country"));
+         }
+     }
     }
 }
