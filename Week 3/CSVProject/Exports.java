@@ -10,16 +10,16 @@ import org.apache.commons.csv.*;
 
 public class Exports {
     public void tester() {
-        FileResource fr = new FileResource("exports_small.csv");
+        FileResource fr = new FileResource("exportdata.csv");
         CSVParser parser = fr.getCSVParser();
         //v5.0
-        //System.out.println(bigExporters(parser, "$999,999,999"));
+        System.out.println(bigExporters(parser, "$999,999,999,999"));
         //v4.0
-        //System.out.println(numberOfExporters(parser, "coffee"));
+        //System.out.println(numberOfExporters(parser, "gold"));
         //v3.0
         //System.out.println(listExportersTwoProducts(parser, "gold", "diamonds"));
         //v2.0
-        //System.out.println(countryInfo(parser, "United States"));
+        //System.out.println(countryInfo(parser, "Nauru"));
         //v1.0
         //for (CSVRecord r : parser) {
          //String s = r.get("Country");
@@ -40,7 +40,7 @@ public class Exports {
         return "NOT FOUND";
     }
     public void listExportersTwoProducts(String exportItem1, String exportItem2){
-     FileResource fr = new FileResource("exports_small.csv");
+     FileResource fr = new FileResource("exportdata.csv");
      CSVParser parser = fr.getCSVParser();
      for (CSVRecord r : parser) {
          String exports = r.get("Exports");
@@ -58,14 +58,14 @@ public class Exports {
      }
      return count;
     }
-    public void bigExporters(CSVParser parser, String amount) {
+    public String bigExporters(CSVParser parser, String amount) {
       String info = "";
       for (CSVRecord r : parser) {
          if (r.get("Value (dollars)").length() > amount.length()) {
              info += r.get("Country") + " " + r.get("Value (dollars)") + "\n";
-             System.out.println(r.get("Country") + " " + r.get("Values (dollars)"));
+             //System.out.println(r.get("Country") + " " + r.get("Values (dollars)"));
          }
       }
-      //return info;
+      return info;
     }
 }

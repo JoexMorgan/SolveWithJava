@@ -9,5 +9,5 @@ comment3.target=void\ listExportersTwoProducts(java.lang.String,\ java.lang.Stri
 comment4.params=parser\ exportItem
 comment4.target=int\ numberOfExporters(org.apache.commons.csv.CSVParser,\ java.lang.String)
 comment5.params=parser\ amount
-comment5.target=void\ bigExporters(org.apache.commons.csv.CSVParser,\ java.lang.String)
+comment5.target=java.lang.String\ bigExporters(org.apache.commons.csv.CSVParser,\ java.lang.String)
 numComments=6
