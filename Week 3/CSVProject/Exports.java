@@ -12,6 +12,8 @@ public class Exports {
     public void tester() {
         FileResource fr = new FileResource("exports_small.csv");
         CSVParser parser = fr.getCSVParser();
+        //v4.0
+        System.out.println(numberOfExporters(parser, "coffee"));
         //v3.0
         //System.out.println(listExportersTwoProducts(parser, "gold", "diamonds"));
         //v2.0
@@ -45,4 +47,13 @@ public class Exports {
          }
      }
     }
+    public int numberOfExporters(CSVParser parser, String exportItem) {
+     int count = 0;
+     for (CSVRecord r : parser) {
+         if (r.get("Exports").contains(exportItem)) {
+               count++;
+           }
+     }
+     return count;
+    }   
 }
