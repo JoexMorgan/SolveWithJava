@@ -85,4 +85,26 @@ public class Weather {
         System.out.println("Coldest temperature on that day was " + coldestHourInFile(coldestFile.getCSVParser()).get("TemperatureF"));
         System.out.println("All the temperatures on the coldest day were: \n" + coldData(coldestFile.getCSVParser()));
     }
+    public CSVRecord lowestHumidityInFile(CSVParser parser) {
+        CSVRecord driestSoFar = null;
+        for (CSVRecord currentRow : parser) {
+            if (driestSoFar == null) {
+                driestSoFar = currentRow;
+            }
+            else {
+                double currentLow = Double.parseDouble(currentRow.get("Humidity"));
+                double driest = Double.parseDouble(driestSoFar.get("Humidity"));
+                if (currentLow < driest && currentRow.get("Humidity") != "N/A") {
+                    driestSoFar = currentRow;
+                    //fileName = f.getName();
+                }
+            }
+        }
+        return driestSoFar;
+    }
+    public void testLowestHumidityInFile () {
+        FileResource fr = new FileResource();
+        CSVRecord driest = lowestHumidityInFile(fr.getCSVParser());
+        System.out.println("lowest humidity was " + driest.get("Humidity") + " at " + driest.get("DateUTC"));
+    }
 }
