@@ -105,6 +105,33 @@ public class Weather {
     public void testLowestHumidityInFile () {
         FileResource fr = new FileResource();
         CSVRecord driest = lowestHumidityInFile(fr.getCSVParser());
-        System.out.println("lowest humidity was " + driest.get("Humidity") + " at " + driest.get("DateUTC"));
+        System.out.println("Lowest humidity was " + driest.get("Humidity") + " at " + driest.get("DateUTC"));
+    }
+    public CSVRecord lowestHumidityInManyFiles() {
+        CSVRecord driestSoFar = null;
+        DirectoryResource dr = new DirectoryResource();
+        for (File f : dr.selectedFiles()) {
+            FileResource fr = new FileResource(f);
+            CSVRecord currentRow = lowestHumidityInFile(fr.getCSVParser());
+            driestSoFar = getDriestOfTwo(currentRow, driestSoFar);
+        }
+        return driestSoFar;
+    }
+    public CSVRecord getDriestOfTwo(CSVRecord currentRow, CSVRecord driestSoFar) {
+        if (driestSoFar == null) {
+                driestSoFar = currentRow;
+        }
+        else {
+            double currentLow = Double.parseDouble(currentRow.get("Humidity"));
+            double driest = Double.parseDouble(driestSoFar.get("Humidity"));
+            if (currentLow < driest) {
+                driestSoFar = currentRow;
+            }
+        }
+        return driestSoFar;
+    }
+    public void testLowestHumidityInManyFiles () {
+        CSVRecord dryGuy = lowestHumidityInManyFiles();
+        System.out.println("Lowest humidity was " + dryGuy.get("Humidity") + " at " + dryGuy.get("DateUTC"));
     }
 }
