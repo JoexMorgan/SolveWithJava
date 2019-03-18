@@ -148,4 +148,27 @@ public class Weather {
         Double averagest = averageTemperatureInFile(fr.getCSVParser());
         System.out.println("Average temperature in file is: " + averagest);
     }
+    public double averageTemperatureWithHighHumidityInFile(CSVParser parser, Integer value) {
+        double tempCount = 0.0;
+        double average = 0.0;
+        for (CSVRecord r : parser) {
+            if (Double.parseDouble(r.get("Humidity")) >= value) {
+                tempCount++;
+                average += Double.parseDouble(r.get("TemperatureF"));
+            }
+            //System.out.println("average: " + average + " tempCount: " + tempCount);
+        }
+        //System.out.println(average / tempCount);
+        return average / tempCount;
+    }
+    public void testAverageTemperatureWithHighHumidityInFile () {
+        FileResource fr = new FileResource();
+        CSVParser parser = fr.getCSVParser();
+        Double average = averageTemperatureWithHighHumidityInFile(fr.getCSVParser(), 80);
+        if (!Double.isNaN(averageTemperatureWithHighHumidityInFile(parser, 80))) {
+            System.out.println("Average temp when high humidity is " + average);
+        } else {
+            System.out.println("No temperatures with that humidity");
+        }
+    }
 }
