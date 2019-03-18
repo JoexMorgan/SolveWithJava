@@ -134,4 +134,18 @@ public class Weather {
         CSVRecord dryGuy = lowestHumidityInManyFiles();
         System.out.println("Lowest humidity was " + dryGuy.get("Humidity") + " at " + dryGuy.get("DateUTC"));
     }
+    public double averageTemperatureInFile(CSVParser parser) {
+        int tempCount = 0;
+        double average = 0;
+        for (CSVRecord r : parser) {
+            average += Double.parseDouble(r.get("TemperatureF"));
+            tempCount++;
+        }
+        return average / tempCount;
+    }
+    public void testAverageTemperatureInFile () {
+        FileResource fr = new FileResource();
+        Double averagest = averageTemperatureInFile(fr.getCSVParser());
+        System.out.println("Average temperature in file is: " + averagest);
+    }
 }
