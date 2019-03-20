@@ -13,9 +13,9 @@ public class Exports {
         FileResource fr = new FileResource("exportdata.csv");
         CSVParser parser = fr.getCSVParser();
         //v5.0
-        System.out.println(bigExporters(parser, "$999,999,999,999"));
+        //System.out.println(bigExporters(parser, "$999,999,999,999"));
         //v4.0
-        //System.out.println(numberOfExporters(parser, "gold"));
+        System.out.println(numberOfExporters(parser, "cocoa"));
         //v3.0
         //System.out.println(listExportersTwoProducts(parser, "gold", "diamonds"));
         //v2.0

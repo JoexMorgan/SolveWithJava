@@ -26,7 +26,7 @@ public class Weather {
     public void testColdestHourInFile () {
         FileResource fr = new FileResource();
         CSVRecord coldest = coldestHourInFile(fr.getCSVParser());
-        System.out.println("coldest temp was " + coldest.get("TemperatureF") + " at " + coldest.get("TimeEST"));
+        System.out.println("coldest temp was " + coldest.get("TemperatureF") + " at " + coldest.get("TimeEDT"));
     }
     public CSVRecord coldestInManyDays () {
         CSVRecord coldestSoFar = null;
@@ -89,14 +89,15 @@ public class Weather {
         CSVRecord driestSoFar = null;
         for (CSVRecord currentRow : parser) {
             if (driestSoFar == null) {
-                driestSoFar = currentRow;
+                   driestSoFar = currentRow;
             }
             else {
-                double currentLow = Double.parseDouble(currentRow.get("Humidity"));
-                double driest = Double.parseDouble(driestSoFar.get("Humidity"));
-                if (currentLow < driest && currentRow.get("Humidity") != "N/A") {
-                    driestSoFar = currentRow;
-                    //fileName = f.getName();
+                if (!currentRow.get("Humidity").equals("N/A")) {
+                    double currentLow = Double.parseDouble(currentRow.get("Humidity"));
+                    double driest = Double.parseDouble(driestSoFar.get("Humidity"));
+                    if (currentLow < driest) {
+                         driestSoFar = currentRow;
+                    }
                 }
             }
         }
@@ -118,14 +119,17 @@ public class Weather {
         return driestSoFar;
     }
     public CSVRecord getDriestOfTwo(CSVRecord currentRow, CSVRecord driestSoFar) {
-        if (driestSoFar == null) {
+        if (driestSoFar == null && !currentRow.get("Humidity").equals("N/A")) {
                 driestSoFar = currentRow;
         }
         else {
+            if (!currentRow.get("Humidity").equals("N/A")) {
             double currentLow = Double.parseDouble(currentRow.get("Humidity"));
             double driest = Double.parseDouble(driestSoFar.get("Humidity"));
-            if (currentLow < driest) {
-                driestSoFar = currentRow;
+                if (currentLow < driest) {
+                    driestSoFar = currentRow;
+            
+                }
             }
         }
         return driestSoFar;
