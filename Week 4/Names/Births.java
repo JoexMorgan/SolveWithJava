@@ -34,7 +34,29 @@ public class Births {
     System.out.println("Total Girls " + totalGirls + " and girls names " + girlNames);
   }
   public void testTotalBirths () {
-    FileResource fr = new FileResource("yob2012short.csv");
+    FileResource fr = new FileResource("yob1980.csv");
     totalBirths(fr);
+  }
+  public Integer getRank (Integer year, String name, String gender) {
+    FileResource fr = new FileResource("yob" + year + ".csv");
+    //FileResource fr = new FileResource("yob2012short.csv");
+    String answer = "";
+    Integer rank = 1;
+    for (CSVRecord r : fr.getCSVParser(false)) {
+      if (r.get(1).equals(gender)) {
+        if (r.get(0).equals(name)) {
+          answer = name + " was the #" + rank + " most popular name in " + year;
+          return rank;
+          //answer = r.get(2) + " babies named " + name + " were born in " + year;    
+        }
+        rank++;
+      }
+      //rank++;
+    }
+    return -1;
+  }
+  public void testGetRank () {
+    System.out.println(getRank(1980, "Zoe", "M"));
+    //System.out.print(getRank(1980, "John", "M" ));   
   }
 }
