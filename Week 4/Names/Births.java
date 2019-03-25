@@ -94,4 +94,13 @@ public class Births {
   public void testGetName () {
     System.out.println(getName(1980, 7282, "F"));   
   }
+  public String whatIsNameInYear (String name, Integer year, Integer newYear, String gender) {
+    String answer = "";
+    Integer rank = getRank(year, name, gender);
+    String newName = getName(newYear, rank, gender);
+    return name + " born in " + year + " would be " + newName + " in " + newYear;  
+  }
+  public void testWhatIsNameInYear () {
+      System.out.println(whatIsNameInYear("Jessica", 1980, 2012, "F"));
+  }
 }
