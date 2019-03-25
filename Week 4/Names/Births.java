@@ -7,7 +7,7 @@
  */
 import edu.duke.*;
 import org.apache.commons.csv.*;
-
+import java.io.*;
 public class Births {
   public Integer totalBirths (FileResource fr) {
     int totalBirths = 0;
@@ -47,8 +47,8 @@ public class Births {
     FileResource fr = new FileResource("yob1980.csv");
     totalBirths(fr);
   }
-  public Integer getRank (Integer year, String name, String gender) {
-    FileResource fr = new FileResource("yob" + year + ".csv");
+  public Integer getRank (Integer year, String name, String gender, FileResource fr) {
+    //FileResource fr = new FileResource("yob" + year + ".csv");
     //FileResource fr = new FileResource("yob2012short.csv");
     //String answer = "";
     Integer rank = 1;
@@ -63,11 +63,12 @@ public class Births {
     return -1;
   }
   public void testGetRank () {
-    System.out.println(getRank(1980, "Zoe", "M"));
+    //System.out.println(getRank(1980, "Mason", "F"));
+    //System.out.println(getRank(2014, "Mason", "M"));
     //System.out.println(getRank(1980, "John", "M" ));   
   }
-  public String getName (Integer year, Integer rank, String gender) {
-    FileResource fr = new FileResource("yob" + year + ".csv");
+  public String getName (Integer year, Integer rank, String gender, FileResource fr) {
+    //FileResource fr = new FileResource("yob" + year + ".csv");
     String name = "NO NAME";
     for (CSVRecord r : fr.getCSVParser(false)) {
       //long currRank = parser.getCurrentLineNumber();
@@ -92,15 +93,37 @@ public class Births {
     return name;
   }
   public void testGetName () {
-    System.out.println(getName(1980, 7282, "F"));   
+    //System.out.println(getName(1980, 7282, "F"));   
   }
   public String whatIsNameInYear (String name, Integer year, Integer newYear, String gender) {
     String answer = "";
-    Integer rank = getRank(year, name, gender);
-    String newName = getName(newYear, rank, gender);
-    return name + " born in " + year + " would be " + newName + " in " + newYear;  
+    //Integer rank = getRank(year, name, gender);
+    //String newName = getName(newYear, rank, gender);
+    //return name + " born in " + year + " would be " + newName + " in " + newYear; 
+    return "bling";
   }
   public void testWhatIsNameInYear () {
       System.out.println(whatIsNameInYear("Jessica", 1980, 2012, "F"));
+  }
+  public int yearOfHighestRank(String name, String gender) {
+    DirectoryResource dr = new DirectoryResource();
+    int bigYear = 0;
+    int highRank = 50000;
+    for (File f : dr.selectedFiles()) {
+      FileResource fr = new FileResource(f);
+      int yearPos = f.getName().indexOf("yob");
+      int currYear = Integer.parseInt(f.getName().substring(yearPos+3, yearPos+7));
+      int currRank = getRank(currYear, name, gender, fr);
+      //int highRank = 40000;   
+      if (currRank < highRank) {
+        System.out.println("highRank " + highRank + " and currRank " + currRank);
+        highRank = currRank;
+        bigYear = currYear;
+      }
+    }
+    if (highRank == -1) {
+      return -1;   
+    }
+    return bigYear;
   }
 }
