@@ -114,9 +114,8 @@ public class Births {
       int yearPos = f.getName().indexOf("yob");
       int currYear = Integer.parseInt(f.getName().substring(yearPos+3, yearPos+7));
       int currRank = getRank(currYear, name, gender, fr);
-      //int highRank = 40000;   
       if (currRank < highRank) {
-        System.out.println("highRank " + highRank + " and currRank " + currRank);
+        //System.out.println("highRank " + highRank + " and currRank " + currRank);
         highRank = currRank;
         bigYear = currYear;
       }
@@ -125,5 +124,23 @@ public class Births {
       return -1;   
     }
     return bigYear;
+  }
+  public double getAverageRank(String name, String gender) {
+    DirectoryResource dr = new DirectoryResource();
+    //double average = 0.0;
+    double rankSum = 0.0;
+    double fileCount = 0.0;
+    for (File f : dr.selectedFiles()) {
+      FileResource fr = new FileResource(f);
+      int yearPos = f.getName().indexOf("yob");
+      int currYear = Integer.parseInt(f.getName().substring(yearPos+3, yearPos+7));
+      int currRank = getRank(currYear, name, gender, fr);
+      if (currRank != -1) {
+        rankSum += currRank;    
+      }
+      fileCount++;
+    }
+    //average = (rankSum / fileCount);
+    return rankSum/fileCount;
   }
 }
