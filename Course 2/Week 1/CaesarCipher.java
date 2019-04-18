@@ -26,9 +26,9 @@ public class CaesarCipher {
     return encrypted.toString();
   }
   public void testEncrypt () {
-    System.out.println(encrypt("First legion attack east flank!", 23)); 
-    //System.out.println(encrypt("HDVW IODQN HDW EDQDQDV", 26-3));
-    
+    System.out.println(encrypt("Every pie I eat makes me feel free!", 23)); 
+    //System.out.println(encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 15));
+    //System.out.println(encrypt("Lujyfwapvu huk zljbypaf hyl mbukhtluahs whyaz vm avkhf'z Pualyula.", 19));   
     
   }
   public String encryptTwoKeys (String input, int key1, int key2) {
@@ -61,7 +61,6 @@ public class CaesarCipher {
   }
   public void testEncryptTwoKeys () {
     System.out.println(encryptTwoKeys("First Legion", 23, 17));    
-    //System.out.println(9%2);
+    System.out.println(encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21));
   }
 }
-//ABCDEFGHIJKLMNOPQRSTUVWXYZ
