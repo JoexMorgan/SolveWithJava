@@ -6,11 +6,11 @@
  * @version (a version number or a date)
  */
 public class CaesarCipher {
-  public String encrypt(String input, int key) {
+  private String alphabet;
+  private String shifted;
+  private int mainKey;
+  public String encrypt(String input) {
     StringBuilder encrypted = new StringBuilder(input);
-    String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    String shifted = alphabet.substring(key) + alphabet.substring(0, key);
-    //make this function case sensitive
     for (int i = 0; i < encrypted.length(); i++) {
       char currChar = encrypted.charAt(i);
       int idx = alphabet.indexOf(Character.toUpperCase(currChar));
@@ -25,12 +25,22 @@ public class CaesarCipher {
     }
     return encrypted.toString();
   }
+  public CaesarCipher(int key) {
+    mainKey = key;
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    shifted = alphabet.substring(key) + (alphabet.substring(0, key));  
+  }
+  public String decrypt(String input) {
+    CaesarCipher cc = new CaesarCipher(26 - mainKey);
+    return cc.encrypt(input);
+  }
   public void testEncrypt () {
-    System.out.println(encrypt("Every pie I eat makes me feel free!", 23)); 
+    System.out.println(encrypt("Every pie I eat makes me feel free!")); 
     //System.out.println(encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 15));
     //System.out.println(encrypt("Lujyfwapvu huk zljbypaf hyl mbukhtluahs whyaz vm avkhf'z Pualyula.", 19));   
     
   }
+  /*
   public String encryptTwoKeys (String input, int key1, int key2) {
     StringBuilder doubleEncrypted = new StringBuilder(input);
     String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -63,4 +73,5 @@ public class CaesarCipher {
     //System.out.println(encryptTwoKeys("First Legion", 23, 17));    
     System.out.println(encryptTwoKeys("He prefers the perverse French esthetes: Verne, Péret, Genet, Perec – hence, he pens fervent screeds, then enters the street, where he sells these letterpress newsletters, three cents per sheet.", 8, 21));
   }
+  */
 }
