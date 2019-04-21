@@ -13,7 +13,6 @@ public class WordLengths {
     //int[] counts = new int[50];
     StringBuilder sb = new StringBuilder();
     for (String word : fr.words()) {
-      System.out.println(word);
       int len = word.length();
       if (Character.isLetter(word.charAt(0)) == false) {
         len--;
@@ -40,9 +39,10 @@ public class WordLengths {
     return maxDex;
   }
   public void testCountWordLengths () {
-    FileResource f = new FileResource("smallHamlet.txt");
-    int[] counts = new int[31];
+    FileResource f = new FileResource("romeo.txt");
+    int[] counts = new int[3000];
     System.out.println(countWordLengths(f, counts));
     System.out.println(indexOfMax(counts));
   }
+ 
 }

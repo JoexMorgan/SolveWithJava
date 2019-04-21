@@ -60,7 +60,7 @@ public class CaesarCipher {
     return doubleEncrypted.toString();
   }
   public void testEncryptTwoKeys () {
-    System.out.println(encryptTwoKeys("First Legion", 23, 17));    
-    System.out.println(encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21));
+    //System.out.println(encryptTwoKeys("First Legion", 23, 17));    
+    System.out.println(encryptTwoKeys("He prefers the perverse French esthetes: Verne, Péret, Genet, Perec – hence, he pens fervent screeds, then enters the street, where he sells these letterpress newsletters, three cents per sheet.", 8, 21));
   }
 }
