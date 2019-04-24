@@ -32,10 +32,10 @@ public class testCaesarCipher {
     return maxDex;
   }
   public void simpleTests () {
-    FileResource fr = new FileResource("romeo.txt");
-    CaesarCipher cc = new CaesarCipher(18);
-    String cipher = cc.encrypt(fr.asString());
-    System.out.println(breakCaesarCipher(cipher));
+    //FileResource fr = new FileResource("romeo.txt");
+    CaesarCipher cc = new CaesarCipher(15);
+    //String cipher = cc.encrypt(fr.asString());
+    System.out.println(cc.encrypt("Can you imagine life WITHOUT the internet AND computers in your pocket?"));
     //System.out.println(cipher);
     //System.out.println(breakCaesarCipher(cc.encrypt(fr.asString())));
   }

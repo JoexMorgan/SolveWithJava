@@ -9,7 +9,7 @@ import edu.duke.*;
 
 public class CommonWords {
   public String[] getCommon() {
-    FileResource fr = new FileResource("common.txt");
+    FileResource fr = new FileResource("errors.txt");
     String[] common = new String[20];
     int index = 0;
     for (String s : fr.words()) {

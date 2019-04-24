@@ -12,7 +12,7 @@ public class testCaesarCipherTwo {
   //private int keyOne;
   //private int keyTwo;
   
-  public String halfOfString(String message, int start) {
+  private String halfOfString(String message, int start) {
     String half;
     StringBuilder sb = new StringBuilder();
     for (int i = start; i < message.length(); i+=2) {
@@ -56,12 +56,16 @@ public class testCaesarCipherTwo {
   }
   
   public void simpleTests () {
-    FileResource fr = new FileResource("caesar.txt");
+    FileResource fr = new FileResource("mysteryTwoKeysQuiz.txt");
     String text = fr.asString();
-    CaesarCipherTwo cc2 = new CaesarCipherTwo(17, 3);
+    CaesarCipherTwo cc2 = new CaesarCipherTwo(21, 8);
     String encrypted = cc2.encrypt(text);
+    //System.out.println(breakCaesarCipher(text));
     
-    System.out.println(breakCaesarCipher(encrypted));
+    System.out.println(cc2.encrypt("Can you imagine life WITHOUT the internet AND computers in your pocket?"));
+    //System.out.println(cc2.decrypt("Hfs cpwewloj loks cd Hoto kyg Cyy."));
+    //System.out.println(breakCaesarCipher("Aal uttx hm aal Qtct Fhljha pl Wbdl. Pvxvxlx!"));
+    //System.out.println(breakCaesarCipher(encrypted));
     //System.out.println(encrypted);
     //System.out.println(fr.asString());
     //System.out.println(cc2.decrypt(encrypted));

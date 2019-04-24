@@ -12,8 +12,11 @@ public class WordLengths {
     //FileResource fr = new FileResource("smallhamlet.txt");
     //int[] counts = new int[50];
     StringBuilder sb = new StringBuilder();
+    
     for (String word : fr.words()) {
+      //System.out.println(word);
       int len = word.length();
+      if (len > 2) {
       if (Character.isLetter(word.charAt(0)) == false) {
         len--;
       }
@@ -22,6 +25,7 @@ public class WordLengths {
       }
       counts[len]++;
     }
+}
     for (int i = 0; i < counts.length; i++) {
       if (counts[i] > 0) {
         sb.append(counts[i] + " words of length " + i + "\n");  
@@ -31,16 +35,16 @@ public class WordLengths {
   }
   public int indexOfMax(int[] values) {
     int maxDex = 0;
-    for (int i : values) {
-      if (values[i] > maxDex) {
+    for (int i=0; i<values.length; i++) {
+      if (values[i] > values[maxDex]) {
         maxDex = i;
       }
     }
     return maxDex;
   }
   public void testCountWordLengths () {
-    FileResource f = new FileResource("romeo.txt");
-    int[] counts = new int[3000];
+    FileResource f = new FileResource("errors.txt");
+    int[] counts = new int[90173];
     System.out.println(countWordLengths(f, counts));
     System.out.println(indexOfMax(counts));
   }
