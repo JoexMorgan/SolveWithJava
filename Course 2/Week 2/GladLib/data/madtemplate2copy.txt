@@ -1,0 +1,5 @@
+ <adjective>  <color> <animal>
+ <color>  <animal>.  <number>
+ <timeframe>, <adjective>, <adjective> <animal> <name>. <animal> <color> <animal> <country>. <verb> <verb>. <color> <fruit>, <adjective> <fruit>. 
+
+

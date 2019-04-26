@@ -36,9 +36,9 @@ public class CharactersInPlay {
   }
   public void tester () {
     findAllCharacters();
-    charactersWithNumParts(31,42);
+    charactersWithNumParts(10, 15);
     /*for (int i = 0; i < myNames.size(); i++) {
-      if (myLines.get(i) > 21) {
+      if (myLines.get(i) > 42) {
         System.out.println(myNames.get(i) + " speaks " + myLines.get(i) + " times in this play.");    
       }
     }*/
