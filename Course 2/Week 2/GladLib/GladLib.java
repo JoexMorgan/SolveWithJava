@@ -15,6 +15,8 @@ public class GladLib {
     
     private Random myRandom;
     
+    private int subCount = 0;
+    
     private static String dataSourceURL = "http://dukelearntoprogram.com/course3/data";
     private static String dataSourceDirectory = "data";
     
@@ -95,6 +97,7 @@ public class GladLib {
           //processWord(sub);
           sub = getSubstitute(w.substring(first+1,last));
         }
+        subCount++;
         return prefix+sub+suffix;
     }
     
@@ -148,7 +151,7 @@ public class GladLib {
         System.out.println("\n");
         String story = fromTemplate("data/madtemplate2.txt");
         printOut(story, 60);
-        System.out.println("\n" + usedList.size() + " words were replaced.");
+        System.out.println("\n" + subCount + " words were replaced.");
         usedList.clear();
     }
     public void nonRepeatTest () {
