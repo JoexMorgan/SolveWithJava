@@ -18,13 +18,11 @@ public class CodonMapper {
     for (int i = start; i < dna.length()-2; i+=3) {
       String codon = dna.substring(i, i+3); 
       if (codons.get(codon) == null && Character.isLetter(codon.charAt(2))) {
-      //System.out.println(codons.get("blub"));
         codons.put(codon, 1);     
       } else if (codons.get(codon) != null) {
          codons.put(codon, codons.get(codon) + 1);   
       }
     }
-    //System.out.println(codons.toString());
   }
   public String getMostCommonCodon () {
     int max = 0;
@@ -54,18 +52,4 @@ public class CodonMapper {
       
     }
   }
-  /*
-  public void printCodonCounts (int start, int end) {
-    FileResource fr = new FileResource("smalldna.txt");
-    String dna = fr.asString();
-    for (int i = 0; i <= 2; i++) {
-      buildCodonMap(i, dna);  
-      for (String s : codons.keySet()) {
-        if (codons.get(s) >= start && codons.get(s) <= end) {
-          System.out.println(s + "\t" + codons.get(s));
-          //System.out.println(getMostCommonCodon());
-        }
-      }
-    }
-  }*/
 }
