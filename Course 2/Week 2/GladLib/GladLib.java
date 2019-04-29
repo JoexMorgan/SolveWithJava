@@ -149,7 +149,7 @@ public class GladLib {
     
     public void makeStory(){
         System.out.println("\n");
-        String story = fromTemplate("data/madtemplate2.txt");
+        String story = fromTemplate("data/madtemplate.txt");
         printOut(story, 60);
         System.out.println("\n" + subCount + " words were replaced.");
         usedList.clear();
