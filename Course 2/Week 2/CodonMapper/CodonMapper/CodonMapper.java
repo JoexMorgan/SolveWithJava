@@ -45,11 +45,12 @@ public class CodonMapper {
   public void tester () {
     FileResource fr = new FileResource();
     //String dna = fr.toString().toUpperCase();
-    for (int i = 0; i < 3; i++) {
-      buildCodonMap(i, fr.asString().toUpperCase());
-      printCodonCounts(1, 2);
+    //for (int i = 0; i < 3; i++) {
+      buildCodonMap(2, fr.asString().toUpperCase());
+      System.out.println(codons.size());
+      //printCodonCounts(7, 7);
       System.out.println("Most common codon is: " + getMostCommonCodon() + " with count " + codons.get(getMostCommonCodon()));
       
-    }
+    //}
   }
 }

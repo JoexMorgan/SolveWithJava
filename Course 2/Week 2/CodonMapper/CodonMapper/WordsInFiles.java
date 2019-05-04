@@ -59,11 +59,12 @@ public class WordsInFiles {
     buildWordFileMap();
     int max = maxNumber();
     for (String s : wordMap.keySet()) {
-      if (wordMap.get(s).size() == max) {
+      if(s.equals("tree")) {
+      //if (wordMap.get(s).size() == max) {
         System.out.println(s + ":\t" + wordMap.get(s));  
       }
     }
     //System.out.println(wordMap);
-    //System.out.println(wordsInNumFiles(maxNumber()));
+    System.out.println(wordsInNumFiles(7).size());
   }
 }
