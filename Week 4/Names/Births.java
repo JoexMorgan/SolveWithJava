@@ -43,6 +43,10 @@ public class Births {
     }
     return girlNames;
   }
+  public void testGirlNames () {
+    FileResource fr = new FileResource("yob1905.csv");
+    System.out.println(girlNames(fr)); 
+  }
   public void testTotalBirths () {
     FileResource fr = new FileResource("yob1980.csv");
     totalBirths(fr);
@@ -63,12 +67,12 @@ public class Births {
     return -1;
   }
   public void testGetRank () {
-    //System.out.println(getRank(1980, "Mason", "F"));
-    //System.out.println(getRank(2014, "Mason", "M"));
-    //System.out.println(getRank(1980, "John", "M" ));   
+    //System.out.println(getRank(1972, "Susan", "F"));
+    //System.out.println(getRank(1974, "Owen", "M"));
+    //System.out.println(getRank(1982, "John", "M" ));   
   }
-  public String getName (Integer year, Integer rank, String gender, FileResource fr) {
-    //FileResource fr = new FileResource("yob" + year + ".csv");
+  public String getName (Integer year, Integer rank, String gender) {
+    FileResource fr = new FileResource("yob" + year + ".csv");
     String name = "NO NAME";
     for (CSVRecord r : fr.getCSVParser(false)) {
       //long currRank = parser.getCurrentLineNumber();
@@ -93,7 +97,8 @@ public class Births {
     return name;
   }
   public void testGetName () {
-    //System.out.println(getName(1980, 7282, "F"));   
+    System.out.println(getName(1980, 350, "F"));
+    //System.out.println(getName(1982, 450, "M"));   
   }
   public String whatIsNameInYear (String name, Integer year, Integer newYear, String gender) {
     String answer = "";
@@ -114,7 +119,7 @@ public class Births {
       int yearPos = f.getName().indexOf("yob");
       int currYear = Integer.parseInt(f.getName().substring(yearPos+3, yearPos+7));
       int currRank = getRank(currYear, name, gender, fr);
-      if (currRank < highRank) {
+      if (currRank < highRank && currRank != -1) {
         //System.out.println("highRank " + highRank + " and currRank " + currRank);
         highRank = currRank;
         bigYear = currYear;
@@ -140,7 +145,29 @@ public class Births {
       }
       fileCount++;
     }
-    //average = (rankSum / fileCount);
     return rankSum/fileCount;
+  }
+  public Integer getTotalBirthsRankedHigher(Integer year, String name, String gender) {
+    FileResource fr = new FileResource("yob" + year + ".csv");
+    //FileResource fr = new FileResource("yob2012short.csv");
+    int totalBirths = 0;
+    int rank = getRank(year, name, gender, fr);
+    for (CSVRecord r : fr.getCSVParser(false)) {
+      if (rank != 1) {
+        if (r.get(1).equals(gender)) {
+          rank--;
+          if (rank > 0) {
+            totalBirths += Integer.parseInt(r.get(2));    
+          } 
+        }
+      } else {
+          System.out.println("No names with higher rank.");
+          break;
+      }
+    }
+    return totalBirths;
+  }
+  public void testGetTotalHigherRank () {
+    System.out.println(getTotalBirthsRankedHigher(1990, "Drew", "M"));    
   }
 }
