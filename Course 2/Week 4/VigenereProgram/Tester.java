@@ -27,8 +27,9 @@ public class Tester {
   public void testVigenereBreaker () {
     //String message = "abcdefghijklm";
     VigenereBreaker vb = new VigenereBreaker();
-    FileResource fr = new FileResource();
-    vb.breakVigenere();
-    //System.out.println(Arrays.toString(vb.tryKeyLength(fr.asString(), 5, 'e')));
+    //FileResource fr = new FileResource();
+    System.out.println(
+    //vb.breakVigenere();
+    //System.out.println(Arrays.toString(vb.tryKeyLength(fr.asString(), 4, 'e')));
   }
 }
