@@ -8,4 +8,6 @@ comment3.params=
 comment3.target=void\ testUniqueIP()
 comment4.params=
 comment4.target=void\ testIPRange()
-numComments=5
+comment5.params=
+comment5.target=void\ testCountVisitsPerIP()
+numComments=6
