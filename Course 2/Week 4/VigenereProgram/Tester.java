@@ -7,6 +7,7 @@
  */
 import java.util.*;
 import edu.duke.*;
+import java.io.*;
 public class Tester {
   public void testCipher () {
     //CaesarCracker crack = new CaesarCracker();
@@ -24,11 +25,28 @@ public class Tester {
     
   }
   
+  public void testBreakForLanguage () {
+    FileResource fr = new FileResource("VigenereTestData/aida_keyverdi.txt");
+    FileResource dictionary = new FileResource("dictionaries/Italian");
+    VigenereBreaker vb = new VigenereBreaker();
+    //System.out.println(Arrays.toString(vb.tryKeyLength(fr.asString(), 5, 'a')));
+    System.out.println(vb.breakForLanguage(fr.asString(), vb.readDictionary(dictionary)).substring(0, 100));
+  }
+  
   public void testVigenereBreaker () {
     //String message = "abcdefghijklm";
     VigenereBreaker vb = new VigenereBreaker();
-    //FileResource fr = new FileResource();
-    System.out.println(
+    //FileResource encryptedFile = new FileResource();
+    FileResource encryptedFile = new FileResource("VigenereTestData/aida_keyverdi.txt");
+    DirectoryResource dr = new DirectoryResource();
+    HashMap<String, HashSet<String>> languages = new HashMap();
+    for (File f : dr.selectedFiles()) {
+        FileResource fr = new FileResource(f);
+        languages.put(f.getName(), vb.readDictionary(fr));
+    }
+    
+    //System.out.println(vb.breakForAllLangs(encryptedFile.asString(), languages).substring(0, 100));
+    System.out.println(vb.breakForLanguage(encryptedFile.toString(), languages.get("Italian")));
     //vb.breakVigenere();
     //System.out.println(Arrays.toString(vb.tryKeyLength(fr.asString(), 4, 'e')));
   }

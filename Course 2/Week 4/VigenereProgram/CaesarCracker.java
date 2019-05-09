@@ -3,9 +3,9 @@ import edu.duke.*;
 public class CaesarCracker {
     char mostCommon;
     
-    public CaesarCracker() {
+    /*public CaesarCracker() {
         mostCommon = 'e';
-    }
+    }*/
     
     public CaesarCracker(char c) {
         mostCommon = c;
